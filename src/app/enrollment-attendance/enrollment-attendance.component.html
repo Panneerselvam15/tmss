@@ -1,1 +1,48 @@
-<p>enrollment-attendance works!</p>
+<div class="container mt-4">
+    <h2>Enrollment and Attendance Tracking</h2>
+  
+    
+    <form (submit)="onSubmitEnrollment()">
+      <div class="form-group">
+        <label for="session">Session</label>
+        <select class="form-control" id="session" [(ngModel)]="enrollment.sessionId" name="sessionId" required>
+          <option *ngFor="let session of sessions" [value]="session.id">{{ getSessionDetails(session) }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="participant">Participant</label>
+        <select class="form-control" id="participant" [(ngModel)]="enrollment.participantId" name="participantId" required>
+          <option *ngFor="let participant of participants" [value]="participant.id">{{ participant.firstName }} {{ participant.lastName }}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Enroll</button>
+    </form>
+  
+    
+    <h3 class="mt-4">Attendance Tracking</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Session</th>
+          <th>Participant</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let attendance of attendances">
+          <td>{{ getSessionDetails(attendance.sessionId) }}</td>
+          <td>{{ getParticipantName(attendance.participantId) }}</td>
+          <td>{{ attendance.status }}</td>
+          <td>
+            <select class="form-control" [(ngModel)]="attendance.status" (change)="updateAttendanceStatus(attendance)">
+              <option value="Present">Present</option>
+              <option value="Absent">Absent</option>
+              <option value="Excused">Excused</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+

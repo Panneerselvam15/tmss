@@ -1,10 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+export interface Session {
+  id: number;
+  courseId: number;
+  date: Date;
+  time: string;
+  location: string;
+  instructor: string;
+}

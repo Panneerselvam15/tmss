@@ -1,1 +1,57 @@
-<p>participantmanagement works!</p>
+<div class="container mt-4">
+    <h2>Participant Management</h2>
+  
+
+    <form (submit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" [(ngModel)]="participant.firstName" name="firstName" required />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" [(ngModel)]="participant.lastName" name="lastName" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="participant.email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="department">Department</label>
+        <input type="text" class="form-control" id="department" [(ngModel)]="participant.department" name="department" required />
+      </div>
+      <div class="form-group">
+        <label for="jobTitle">Job Title</label>
+        <input type="text" class="form-control" id="jobTitle" [(ngModel)]="participant.jobTitle" name="jobTitle" required />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+    </form>
+  
+    <h3 class="mt-4">Existing Participants</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Job Title</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let participant of participants">
+          <td>{{ participant.firstName }}</td>
+          <td>{{ participant.lastName }}</td>
+          <td>{{ participant.email }}</td>
+          <td>{{ participant.department }}</td>
+          <td>{{ participant.jobTitle }}</td>
+          <td>
+            <button class="btn btn-warning" (click)="editParticipant(participant)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteParticipant(participant.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
